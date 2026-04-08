@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 2</title>
+
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        input {
+            padding: 5px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 6px 10px;
+            background: orange;
+            border: none;
+            cursor: pointer;
+        }
+
+        #error {
+            color: red;
+        }
+
+        label{
+            color: beige;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Heat Index Checker</h1>
+    <h2>Note:</h2>
+    <p>Input the temperature (C°) and humidity (%), then click Check to see the heat index and its statues.</p>
+
+    <div class="box">
+        <label>Degree in °C:</label> <br>
+        <input type="number" id="tempInput" placeholder="Input degree value"> <br>
+        <label>humidity in %</label> <br>
+        <input type="number" id="humInput" placeholder="Input percentage value"> <br>
+        <button onclick="checkHeat()">Check</button>
+    </div>
+
+    <p id="result"></p>
+
+    <script>
+        function checkHeat(){
+            let temp = document.getElementById("tempInput").value; 
+            let hum = document.getElementById("humInput").value;
+            
+            HI = temp + (0.33 * hum) - 4; 
+            index = "";
+
+            switch(true) {
+                case (HI <= 27): 
+                    status = "Comfortable / Cool";
+                    break;
+                case (HI >= 28 && HI <= 32): 
+                    status = "Warm";
+                    break;
+                case (HI >= 33 && HI <= 37): 
+                    status = "Hot";
+                    break;
+                case (HI >= 38 && HI <= 41): 
+                    status = "Very hot / Caution";
+                    break;
+                case (HI <= 42): 
+                    status = "Extreme Heat / Danger";
+                    break;
+                
+                default:
+                    status= "Invalid Input!"
+            }
+            document.getElementById("result").innerHTML = 
+                "Heat Index: " + status;
+        }
+    </script>
+</body>
+</html>
